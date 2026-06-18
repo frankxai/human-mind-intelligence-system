@@ -2,6 +2,8 @@
 
 > **Positioning**: Human Mind Intelligence System is the human-specific model layer for Mind Intelligence Systems. It models attention, memory, emotion, behavior, social context, and response tendencies so AI systems can reason about humans as humans — without drifting into diagnosis, treatment, or any regulated medical use.
 >
+> **Extended research scope**: The foundation is intended to support later modeling of motivation, perception, learning, belief, identity, consciousness, social cognition, metacognition, and neural response prediction through explicit schemas and skills rather than implicit speculation.
+>
 > **Guardrail**: HMIS is **research-only** and **non-clinical**. It must not be used for psychiatric diagnosis, clinical treatment planning, crisis triage, or any medical decision-making workflow.
 
 ---
@@ -17,6 +19,10 @@ HMIS follows a simple doctrine that keeps the stack aligned:
 - **OS is lived** — the human being, their biography, and their actual experience are never reducible to software.
 - **System is engineered** — HMIS is an engineered inference layer that represents observed patterns, not the full person.
 - **Systems is the category** — this repository belongs to the broader family of Mind Intelligence Systems and supplies the human-specific layer inside that category.
+
+## Quick start
+
+Start with `humanmind.yaml`, then read `HERMES.md`, `models/`, `schemas/`, `skills/`, and `workflows/` in that order.
 
 ## Repository map
 

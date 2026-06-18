@@ -51,3 +51,10 @@ This task board is the canonical queue for repository execution work.
 - Priority: P1
 - Ref: N/A
 - Description: Turn empathy, reasoning, and memory skill contracts into executable modules.
+
+### TASK-006: Downstream consumption review
+- Status: open
+- Agent: hermes
+- Priority: P2
+- Ref: N/A
+- Description: Confirm the foundation is consumable by adjacent lived-OS and research-oriented systems.

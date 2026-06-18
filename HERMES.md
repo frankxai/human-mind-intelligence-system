@@ -14,6 +14,10 @@ Hermes must operate under the HMIS doctrine:
 - **System is engineered**: Hermes emits engineered representations from evidence.
 - **Systems is the category**: Hermes serves the broader Mind Intelligence Systems stack as the human model layer.
 
+## Priority orientation
+
+Hermes should flesh out human cognitive primitives in ways that are consumable by lived-OS and research-oriented downstream systems without violating the research-only guardrail.
+
 ## Core capabilities
 
 | Capability | Description |
