@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/frankxai/human-mind-intelligence-system/schemas/behavior-signal.schema.json",
+  "title": "BehaviorSignal",
+  "description": "A single observable behavioral signal from a human interaction. Used as input to Hermes inference.",
+  "type": "object",
+  "required": ["schema_version", "signal_id", "session_id", "timestamp", "type", "context"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Schema version identifier"
+    },
+    "signal_id": {
+      "type": "string",
+      "description": "Unique identifier for this signal",
+      "minLength": 1
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Session this signal belongs to",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the signal"
+    },
+    "type": {
+      "type": "string",
+      "description": "Signal type identifier",
+      "enum": [
+        "initiated_topic",
+        "requested_clarification",
+        "provided_unsolicited_context",
+        "changed_subject",
+        "agreed_with_suggestion",
+        "challenged_suggestion",
+        "asked_follow_up",
+        "gave_direct_answer",
+        "gave_hedged_answer",
+        "used_personal_anecdote",
+        "expressed_frustration",
+        "expressed_curiosity",
+        "expressed_confidence",
+        "expressed_uncertainty",
+        "short_response",
+        "long_response",
+        "question_heavy_response",
+        "corrected_own_statement",
+        "escalated",
+        "de_escalated",
+        "other"
+      ]
+    },
+    "context": {
+      "type": "string",
+      "description": "Brief description of the interaction context in which this signal was observed",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "intensity": {
+      "type": "number",
+      "description": "Strength of the signal observation (0.0 = very weak, 1.0 = very strong)",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "turn_index": {
+      "type": "integer",
+      "description": "The turn number in the conversation where this signal was observed",
+      "minimum": 0
+    },
+    "model_layer_hint": {
+      "type": "string",
+      "enum": ["cognitive", "emotional", "behavioral", "social"],
+      "description": "The model layer most relevant to this signal (optional, used to route to correct model)"
+    },
+    "raw_excerpt": {
+      "type": "string",
+      "description": "Optional: a verbatim excerpt from the interaction that generated this signal (must be anonymized or consented)",
+      "maxLength": 1000
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional key-value metadata about this signal",
+      "additionalProperties": {
+        "type": ["string", "number", "boolean"]
+      }
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/frankxai/human-mind-intelligence-system/schemas/cognitive-profile.schema.json",
+  "title": "CognitiveProfile",
+  "description": "A persistent cognitive profile for an individual, built from multiple mind-state inferences over time. NOT a clinical assessment.",
+  "type": "object",
+  "required": ["schema_version", "profile_id", "created_at", "updated_at", "cognitive_styles", "attention_profile"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Schema version identifier"
+    },
+    "profile_id": {
+      "type": "string",
+      "description": "Unique identifier for this cognitive profile (must not be a real-world PII identifier)"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this profile was first created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this profile was last updated"
+    },
+    "session_count": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of sessions used to build this profile"
+    },
+    "cognitive_styles": {
+      "type": "object",
+      "description": "Weighted distribution of cognitive styles observed across sessions",
+      "required": ["dominant"],
+      "properties": {
+        "dominant": {
+          "type": "string",
+          "enum": ["analytical", "intuitive", "narrative", "abstract", "concrete"]
+        },
+        "weights": {
+          "type": "object",
+          "description": "Normalized weight for each cognitive style (must sum to 1.0)",
+          "properties": {
+            "analytical": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "intuitive": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "narrative": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "abstract": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "concrete": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+          }
+        },
+        "stability": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "How stable this profile is (0.0 = highly variable, 1.0 = very stable)"
+        }
+      }
+    },
+    "attention_profile": {
+      "type": "object",
+      "description": "Attention mode tendencies",
+      "required": ["dominant_mode"],
+      "properties": {
+        "dominant_mode": {
+          "type": "string",
+          "enum": ["focused", "distributed", "sequential", "parallel"]
+        },
+        "mode_weights": {
+          "type": "object",
+          "properties": {
+            "focused": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "distributed": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "sequential": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "parallel": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+          }
+        }
+      }
+    },
+    "cognitive_load_tendency": {
+      "type": "string",
+      "enum": ["typically_low", "typically_moderate", "typically_high", "highly_variable", "unknown"],
+      "description": "General cognitive load tendency observed across sessions"
+    },
+    "learning_style_notes": {
+      "type": "string",
+      "description": "Free-text notes about observed learning preferences (not diagnostic)"
+    },
+    "profile_confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Overall confidence in this profile given the session count and signal quality"
+    },
+    "source_session_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Session IDs that contributed to this profile"
+    }
+  }
+}

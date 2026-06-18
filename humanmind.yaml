@@ -1,0 +1,65 @@
+name: human-mind-intelligence-system
+version: "1.0.0"
+status: foundation
+
+description: >
+  Human-specific model layer for cognitive, emotional, behavioral, and social primitives.
+  Powers the Hermes agent and downstream AI systems that reason about human minds.
+
+guardrail: >
+  NOT a clinical or medical tool. Must not be used for psychiatric diagnosis,
+  clinical treatment planning, or any regulated medical purpose.
+
+agents:
+  - id: hermes
+    version: "1.0.0"
+    spec: HERMES.md
+    status: active
+    entry_point: null  # populated in v2
+
+model_layers:
+  - id: cognitive
+    path: models/cognitive/
+    description: Cognitive style primitives and reasoning patterns
+  - id: emotional
+    path: models/emotional/
+    description: Emotional pattern taxonomy (non-clinical)
+  - id: behavioral
+    path: models/behavioral/
+    description: Behavioral signal classifiers and tendency models
+  - id: social
+    path: models/social/
+    description: Social context, relational patterns, group dynamics
+
+schemas:
+  mind_state: schemas/mind-state.schema.json
+  cognitive_profile: schemas/cognitive-profile.schema.json
+  behavior_signal: schemas/behavior-signal.schema.json
+
+skills:
+  - id: empathy
+    path: skills/empathy/
+    spec: skills/empathy/SKILL.md
+  - id: reasoning
+    path: skills/reasoning/
+    spec: skills/reasoning/SKILL.md
+  - id: memory
+    path: skills/memory/
+    spec: skills/memory/SKILL.md
+
+workflows:
+  - id: onboarding
+    path: workflows/onboarding.md
+  - id: inference
+    path: workflows/inference.md
+  - id: evaluation
+    path: workflows/evaluation.md
+
+task_board: .codex/tasks.md
+
+constraints:
+  max_confidence_score: 1.0
+  min_confidence_score: 0.0
+  low_confidence_threshold: 0.4
+  clinical_output_prohibited: true
+  raw_data_retention: false
