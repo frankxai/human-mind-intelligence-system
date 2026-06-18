@@ -1,0 +1,8 @@
+{
+  "type": "object",
+  "properties": {
+    "tribe_v2": {"description": "Neural response prediction for in-silico multiplanetary cognition + family protection"},
+    "emotion_map": {},
+    "belief_update": {"guard": "protect against demons/misinfo"}
+  }
+}
