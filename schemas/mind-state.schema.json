@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/frankxai/human-mind-intelligence-system/schemas/mind-state.schema.json",
+  "title": "MindState",
+  "description": "A doctrine-aligned, non-clinical representation of a person's current inferred interaction state.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "session_id", "timestamp", "cognitive", "emotional", "behavioral", "social"],
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "session_id": { "type": "string", "minLength": 1 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "low_confidence_flag": { "type": "boolean" },
+    "cognitive": {
+      "type": "object",
+      "required": ["dominant_style"],
+      "properties": {
+        "dominant_style": {
+          "type": "string",
+          "enum": ["analytical", "intuitive", "narrative", "abstract", "concrete"]
+        },
+        "secondary_style": {
+          "type": "string",
+          "enum": ["analytical", "intuitive", "narrative", "abstract", "concrete"]
+        },
+        "attention_mode": {
+          "type": "string",
+          "enum": ["focused", "distributed", "sequential", "parallel"]
+        },
+        "cognitive_load_signal": {
+          "type": "string",
+          "enum": ["low", "moderate", "high", "unknown"]
+        },
+        "confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "evidence": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "emotional": {
+      "type": "object",
+      "required": ["dominant_pattern"],
+      "properties": {
+        "dominant_pattern": {
+          "type": "string",
+          "enum": ["engaged", "withdrawn", "frustrated", "curious", "confident", "uncertain", "collaborative", "guarded"]
+        },
+        "secondary_pattern": {
+          "type": "string",
+          "enum": ["engaged", "withdrawn", "frustrated", "curious", "confident", "uncertain", "collaborative", "guarded"]
+        },
+        "tone_tendency": {
+          "type": "object",
+          "properties": {
+            "primary": { "type": "string" },
+            "secondary": { "type": "string" },
+            "variability": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+          }
+        },
+        "confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "evidence": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "behavioral": {
+      "type": "object",
+      "required": ["dominant_tendency"],
+      "properties": {
+        "dominant_tendency": {
+          "type": "string",
+          "enum": ["proactive", "reactive", "deliberate", "impulsive", "persistent", "adaptive", "habitual", "exploratory"]
+        },
+        "secondary_tendency": {
+          "type": "string",
+          "enum": ["proactive", "reactive", "deliberate", "impulsive", "persistent", "adaptive", "habitual", "exploratory"]
+        },
+        "response_pattern_prediction": { "type": "string" },
+        "confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "evidence": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "social": {
+      "type": "object",
+      "required": ["relational_pattern"],
+      "properties": {
+        "relational_pattern": {
+          "type": "string",
+          "enum": ["high_trust", "low_trust", "authority_oriented", "peer_oriented", "independent", "interdependent"]
+        },
+        "communication_style": {
+          "type": "object",
+          "properties": {
+            "directness": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "formality": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "verbosity": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "questioning_rate": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+          }
+        },
+        "tribe_context": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["tribe_id", "role"],
+            "properties": {
+              "tribe_id": { "type": "string" },
+              "label": { "type": "string" },
+              "role": { "type": "string" },
+              "cohesion_score": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+            }
+          }
+        },
+        "confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "evidence": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "skill_annotations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["skill_id", "confidence"],
+        "properties": {
+          "skill_id": { "type": "string", "enum": ["empathy", "reasoning", "memory"] },
+          "confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "evidence": { "type": "array", "items": { "type": "string" } },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}
