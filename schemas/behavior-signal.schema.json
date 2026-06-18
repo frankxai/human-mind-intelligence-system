@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/frankxai/human-mind-intelligence-system/schemas/behavior-signal.schema.json",
+  "title": "BehaviorSignal",
+  "description": "A single observable behavioral signal used as input to HMIS research workflows.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "signal_id", "session_id", "timestamp", "type", "context"],
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "signal_id": { "type": "string", "minLength": 1 },
+    "session_id": { "type": "string", "minLength": 1 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "type": {
+      "type": "string",
+      "enum": [
+        "initiated_topic",
+        "requested_clarification",
+        "provided_unsolicited_context",
+        "changed_subject",
+        "agreed_with_suggestion",
+        "challenged_suggestion",
+        "asked_follow_up",
+        "gave_direct_answer",
+        "gave_hedged_answer",
+        "used_personal_anecdote",
+        "expressed_frustration",
+        "expressed_curiosity",
+        "expressed_confidence",
+        "expressed_uncertainty",
+        "short_response",
+        "long_response",
+        "question_heavy_response",
+        "corrected_own_statement",
+        "escalated",
+        "de_escalated",
+        "other"
+      ]
+    },
+    "context": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "intensity": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "turn_index": { "type": "integer", "minimum": 0 },
+    "model_layer_hint": {
+      "type": "string",
+      "enum": ["cognitive", "emotional", "behavioral", "social"]
+    },
+    "raw_excerpt": { "type": "string", "maxLength": 1000 },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": { "type": ["string", "number", "boolean"] }
+    }
+  }
+}

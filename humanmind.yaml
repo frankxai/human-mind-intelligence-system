@@ -1,0 +1,74 @@
+name: human-mind-intelligence-system
+version: "1.0.0"
+status: foundation
+usage_mode: research_only
+category: systems
+positioning: >
+  Human-specific model layer for Mind Intelligence Systems.
+  Models attention, memory, emotion, behavior, social context,
+  and response tendencies for non-clinical inference.
+
+doctrine:
+  os: lived
+  system: engineered
+  systems: category
+
+guardrail: >
+  Not a clinical or medical tool. Do not use for diagnosis,
+  treatment planning, crisis triage, or regulated medical decisions.
+
+agents:
+  - id: hermes
+    version: "1.0.0"
+    spec: HERMES.md
+    status: active
+  - id: codex
+    version: "1.0.0"
+    spec: AGENTS.md
+    status: active
+
+model_layers:
+  - id: cognitive
+    path: models/cognitive/
+    description: Attention, reasoning, and load primitives
+  - id: emotional
+    path: models/emotional/
+    description: Non-clinical emotional interaction patterns
+  - id: behavioral
+    path: models/behavioral/
+    description: Action tendencies and response signals
+  - id: social
+    path: models/social/
+    description: Relational stance and tribe context
+
+schemas:
+  mind_state: schemas/mind-state.schema.json
+  cognitive_profile: schemas/cognitive-profile.schema.json
+  behavior_signal: schemas/behavior-signal.schema.json
+
+skills:
+  - id: empathy
+    path: skills/empathy/
+    spec: skills/empathy/SKILL.md
+  - id: reasoning
+    path: skills/reasoning/
+    spec: skills/reasoning/SKILL.md
+  - id: memory
+    path: skills/memory/
+    spec: skills/memory/SKILL.md
+
+workflows:
+  - id: onboarding
+    path: workflows/onboarding.md
+  - id: inference
+    path: workflows/inference.md
+  - id: evaluation
+    path: workflows/evaluation.md
+
+constraints:
+  max_confidence_score: 1.0
+  min_confidence_score: 0.0
+  low_confidence_threshold: 0.4
+  clinical_output_prohibited: true
+  raw_data_retention: false
+  evidence_required_for_high_confidence: true

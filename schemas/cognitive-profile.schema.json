@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/frankxai/human-mind-intelligence-system/schemas/cognitive-profile.schema.json",
+  "title": "CognitiveProfile",
+  "description": "A non-clinical persistent cognitive profile built from multiple HMIS observations.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile_id", "created_at", "updated_at", "cognitive_styles", "attention_profile"],
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "profile_id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "session_count": { "type": "integer", "minimum": 1 },
+    "cognitive_styles": {
+      "type": "object",
+      "required": ["dominant"],
+      "properties": {
+        "dominant": {
+          "type": "string",
+          "enum": ["analytical", "intuitive", "narrative", "abstract", "concrete"]
+        },
+        "weights": {
+          "type": "object",
+          "properties": {
+            "analytical": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "intuitive": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "narrative": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "abstract": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "concrete": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+          }
+        },
+        "stability": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      }
+    },
+    "attention_profile": {
+      "type": "object",
+      "required": ["dominant_mode"],
+      "properties": {
+        "dominant_mode": {
+          "type": "string",
+          "enum": ["focused", "distributed", "sequential", "parallel"]
+        },
+        "mode_weights": {
+          "type": "object",
+          "properties": {
+            "focused": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "distributed": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "sequential": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "parallel": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+          }
+        }
+      }
+    },
+    "cognitive_load_tendency": {
+      "type": "string",
+      "enum": ["typically_low", "typically_moderate", "typically_high", "highly_variable", "unknown"]
+    },
+    "learning_style_notes": { "type": "string" },
+    "profile_confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "source_session_ids": { "type": "array", "items": { "type": "string" } }
+  }
+}
