@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Human Mind Intelligence System — Construct Explorer</title>
+<style>
+  :root {
+    --bg: #0a0b0f;
+    --bg2: #0e1016;
+    --panel: rgba(255,255,255,0.03);
+    --panel2: rgba(255,255,255,0.05);
+    --line: rgba(255,255,255,0.09);
+    --line2: rgba(255,255,255,0.14);
+    --txt: #e8eaf0;
+    --txt-dim: #9aa0ad;
+    --txt-faint: #6b7280;
+    --gates: #f5a623;
+    --feeds: #4aa3ff;
+    --modulates: #b06cff;
+    --reflects-on: #2ee6a6;
+    --warn: #ffb454;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: radial-gradient(1200px 700px at 70% -10%, #15171f 0%, var(--bg) 60%);
+    color: var(--txt);
+    font: 15px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--feeds); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { display: grid; grid-template-columns: 1fr 420px; gap: 0; height: 100vh; }
+  @media (max-width: 980px) { .wrap { grid-template-columns: 1fr; height: auto; } }
+
+  header { padding: 22px 28px 14px; border-bottom: 1px solid var(--line); }
+  h1 { font-size: 19px; font-weight: 650; margin: 0 0 6px; letter-spacing: -0.01em; }
+  h1 span { color: var(--txt-faint); font-weight: 450; }
+  .thesis { color: var(--txt-dim); max-width: 880px; font-size: 13.5px; margin: 0; }
+  .banner {
+    margin-top: 12px; padding: 9px 13px; border-radius: 9px; font-size: 12.5px;
+    background: rgba(255,180,84,0.07); border: 1px solid rgba(255,180,84,0.22); color: #ffd9a3;
+  }
+  .banner b { color: var(--warn); }
+
+  .left { display: flex; flex-direction: column; min-width: 0; }
+  .graph-area { position: relative; flex: 1; min-height: 540px; }
+  svg { width: 100%; height: 100%; display: block; }
+
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; padding: 10px 28px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--txt-dim); }
+  .legend .k { display: inline-flex; align-items: center; gap: 7px; }
+  .legend .swatch { width: 22px; height: 0; border-top: 3px solid; border-radius: 3px; }
+
+  .node-label { fill: var(--txt-dim); font-size: 12px; pointer-events: none; }
+  .node-circle { cursor: pointer; transition: r .12s ease, fill .12s ease; }
+  .edge { fill: none; opacity: .42; transition: opacity .12s ease, stroke-width .12s ease; }
+  .arrow { opacity: .5; }
+  .dim { opacity: .07 !important; }
+  .lit { opacity: .95 !important; }
+
+  /* side panel */
+  aside { border-left: 1px solid var(--line); background: var(--bg2); overflow-y: auto; }
+  @media (max-width: 980px) { aside { border-left: none; border-top: 1px solid var(--line); } }
+  .pad { padding: 22px 24px 40px; }
+  .hint { color: var(--txt-faint); font-size: 13px; }
+  .ctitle { font-size: 18px; font-weight: 650; margin: 0 0 2px; letter-spacing: -0.01em; }
+  .ctype { font-size: 12px; color: var(--txt-faint); margin-bottom: 14px; }
+  .cdesc { color: var(--txt-dim); font-size: 13.5px; margin: 0 0 18px; }
+  .sec { margin: 18px 0; }
+  .sec h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--txt-faint); margin: 0 0 9px; font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--panel2); border: 1px solid var(--line); color: var(--txt-dim); }
+  .chip.lens { border-color: rgba(176,108,255,0.35); color: #d3b8ff; }
+  .rel { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 4px 0; color: var(--txt-dim); cursor: pointer; }
+  .rel:hover { color: var(--txt); }
+  .reltag { font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; padding: 1px 7px; border-radius: 5px; border: 1px solid; }
+  .frame { font-size: 13px; color: var(--txt-dim); background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .paper { border: 1px solid var(--line); border-radius: 10px; padding: 11px 13px; margin-bottom: 9px; background: var(--panel); }
+  .paper .pt { font-size: 13.5px; font-weight: 550; }
+  .paper .pmeta { font-size: 11.5px; color: var(--txt-faint); margin: 2px 0 5px; }
+  .paper .pnote { font-size: 12.5px; color: var(--txt-dim); }
+  .stages { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .stage { font-size: 11px; color: var(--txt-faint); border: 1px dashed var(--line2); border-radius: 7px; padding: 3px 8px; }
+  .stage b { color: var(--txt-dim); font-weight: 600; }
+  footer { padding: 14px 24px; border-top: 1px solid var(--line); color: var(--txt-faint); font-size: 11.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="left">
+    <header>
+      <h1>Human Mind Intelligence System <span>· Construct Explorer</span></h1>
+      <p class="thesis" id="thesis"></p>
+      <div class="banner"><b>Non-clinical.</b> This models cognition and predicts likely responses with confidence. It never diagnoses, names disorders, or prescribes. Every reading is a labelled, falsifiable hypothesis a human decides on.</div>
+    </header>
+    <div class="graph-area"><svg id="svg" viewBox="0 0 800 700" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Graph of 12 cognitive constructs and 28 typed edges"></svg></div>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <aside>
+    <div class="pad" id="panel">
+      <p class="hint">Select a construct in the graph to drill in: its schema indicators and interpretation lenses, the ontology edges that connect it, and the frontier + cognitive-science research that grounds its model.</p>
+      <div class="sec">
+        <h3>The five-stage discipline</h3>
+        <div class="stages">
+          <span class="stage"><b>1 Observe</b></span>
+          <span class="stage"><b>2 Interpret</b></span>
+          <span class="stage"><b>3 Hypothesize</b></span>
+          <span class="stage"><b>4 Evidence</b></span>
+          <span class="stage"><b>5 Decide</b> · human-owned</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+<footer id="foot"></footer>
+
+<script src="explorer-data.js"></script>
+<script>
+(function () {
+  var D = window.HMIS_DATA;
+  if (!D) { document.getElementById("panel").innerHTML = "<p class='hint'>explorer-data.js missing. Run <code>node scripts/build-explorer.mjs</code>.</p>"; return; }
+
+  var COLORS = { "gates": "var(--gates)", "feeds": "var(--feeds)", "modulates": "var(--modulates)", "reflects-on": "var(--reflects-on)" };
+  document.getElementById("thesis").textContent = D.thesis;
+  document.getElementById("foot").textContent =
+    "Generated from schemas/ + ontology/edges.json + docs/research/research.json · " +
+    D.constructs.length + " constructs · " + D.edges.length + " edges · schemaVersion " + D.schemaVersion + " · Built on SIP.";
+
+  // legend
+  var legend = document.getElementById("legend");
+  Object.keys(D.edgeTypes).forEach(function (t) {
+    var k = document.createElement("span"); k.className = "k";
+    k.innerHTML = '<span class="swatch" style="border-color:' + COLORS[t] + '"></span>' + t +
+      ' <span style="color:var(--txt-faint)">— ' + D.edgeTypes[t] + "</span>";
+    legend.appendChild(k);
+  });
+
+  // layout: 12 nodes on a circle
+  var W = 800, H = 700, cx = W / 2, cy = H / 2 + 6, R = 250;
+  var maxDeg = Math.max.apply(null, D.constructs.map(function (c) { return c.degree; }));
+  var pos = {};
+  D.constructs.forEach(function (c, i) {
+    var a = (i / D.constructs.length) * Math.PI * 2 - Math.PI / 2;
+    pos[c.id] = { x: cx + R * Math.cos(a), y: cy + R * Math.sin(a), a: a };
+  });
+
+  var svg = document.getElementById("svg");
+  var NS = "http://www.w3.org/2000/svg";
+  function el(n, attrs) { var e = document.createElementNS(NS, n); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+
+  // arrow markers per edge type
+  var defs = el("defs", {});
+  Object.keys(COLORS).forEach(function (t) {
+    var m = el("marker", { id: "a-" + t, viewBox: "0 0 10 10", refX: "9", refY: "5", markerWidth: "7", markerHeight: "7", orient: "auto-start-reverse" });
+    m.appendChild(el("path", { d: "M0,0 L10,5 L0,10 z", fill: COLORS[t] }));
+    defs.appendChild(m);
+  });
+  svg.appendChild(defs);
+
+  // edges (curved toward center)
+  var edgeEls = [];
+  D.edges.forEach(function (e) {
+    var p = pos[e.from], q = pos[e.to];
+    var mx = (p.x + q.x) / 2, my = (p.y + q.y) / 2;
+    var ctrlx = mx + (cx - mx) * 0.28, ctrly = my + (cy - my) * 0.28;
+    var path = el("path", {
+      d: "M" + p.x + "," + p.y + " Q" + ctrlx + "," + ctrly + " " + q.x + "," + q.y,
+      class: "edge", stroke: COLORS[e.type], "stroke-width": 1.6,
+      "marker-end": "url(#a-" + e.type + ")"
+    });
+    path._e = e; svg.appendChild(path); edgeEls.push(path);
+  });
+
+  // nodes
+  var nodeEls = {};
+  D.constructs.forEach(function (c) {
+    var p = pos[c.id];
+    var rad = 7 + (c.degree / maxDeg) * 9;
+    var g = el("g", {});
+    var circ = el("circle", { cx: p.x, cy: p.y, r: rad, class: "node-circle", fill: "#cdd3e0", stroke: "var(--bg)", "stroke-width": 2 });
+    var outward = Math.cos(p.a) >= 0 ? 1 : -1;
+    var lx = p.x + outward * (rad + 7);
+    var label = el("text", { x: lx, y: p.y + 4, class: "node-label", "text-anchor": outward >= 0 ? "start" : "end" });
+    label.textContent = c.title.replace(" Observation", "");
+    g.appendChild(circ); g.appendChild(label); svg.appendChild(g);
+    nodeEls[c.id] = { circ: circ, label: label, rad: rad };
+    circ.addEventListener("click", function () { select(c.id); });
+    circ.addEventListener("mouseenter", function () { highlight(c.id); });
+    circ.addEventListener("mouseleave", function () { if (!selected) clearHL(); else highlight(selected); });
+  });
+
+  var selected = null;
+  function highlight(id) {
+    var keep = {}; keep[id] = 1;
+    edgeEls.forEach(function (pe) {
+      var on = pe._e.from === id || pe._e.to === id;
+      pe.classList.toggle("lit", on); pe.classList.toggle("dim", !on);
+      if (on) { keep[pe._e.from] = 1; keep[pe._e.to] = 1; }
+    });
+    Object.keys(nodeEls).forEach(function (nid) {
+      nodeEls[nid].circ.style.opacity = keep[nid] ? 1 : 0.22;
+      nodeEls[nid].circ.setAttribute("fill", nid === id ? "#fff" : "#cdd3e0");
+    });
+  }
+  function clearHL() {
+    edgeEls.forEach(function (pe) { pe.classList.remove("lit", "dim"); });
+    Object.keys(nodeEls).forEach(function (nid) { nodeEls[nid].circ.style.opacity = 1; nodeEls[nid].circ.setAttribute("fill", "#cdd3e0"); });
+  }
+
+  var byId = Object.fromEntries(D.constructs.map(function (c) { return [c.id, c]; }));
+  function esc(s) { return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;"); }
+
+  function relRow(id, type, dir) {
+    var t = byId[id]; var color = COLORS[type];
+    var arrow = dir === "out" ? "→" : "←";
+    return '<div class="rel" data-go="' + id + '"><span class="reltag" style="color:' + color + ';border-color:' + color + '">' + type + '</span> ' +
+      arrow + ' ' + esc(t.title.replace(" Observation", "")) + "</div>";
+  }
+
+  function select(id) {
+    selected = id; highlight(id);
+    var c = byId[id];
+    var h = "";
+    h += '<p class="hint" style="cursor:pointer" data-go="__back">‹ all constructs</p>';
+    h += '<div class="ctitle">' + esc(c.title.replace(" Observation", "")) + "</div>";
+    h += '<div class="ctype">construct · degree ' + c.degree + ' · required: ' + c.required.join(", ") + "</div>";
+    h += '<p class="cdesc">' + esc(c.description) + "</p>";
+
+    if (c.indicators.length) {
+      h += '<div class="sec"><h3>Indicators (schema enum)</h3><div class="chips">' +
+        c.indicators.map(function (i) { return '<span class="chip">' + esc(i) + "</span>"; }).join("") + "</div></div>";
+    }
+    if (c.lenses.length) {
+      h += '<div class="sec"><h3>Interpretation lenses</h3><div class="chips">' +
+        c.lenses.map(function (l) { return '<span class="chip lens">' + esc(l) + "</span>"; }).join("") + "</div></div>";
+    }
+    if (c.edgesOut.length) {
+      h += '<div class="sec"><h3>Influences</h3>' + c.edgesOut.map(function (e) { return relRow(e.to, e.type, "out"); }).join("") + "</div>";
+    }
+    if (c.edgesIn.length) {
+      h += '<div class="sec"><h3>Influenced by</h3>' + c.edgesIn.map(function (e) { return relRow(e.from, e.type, "in"); }).join("") + "</div>";
+    }
+    if (c.research.frame) {
+      h += '<div class="sec"><h3>Research grounding' + (c.research.labs.length ? " · " + c.research.labs.join(", ") : "") + '</h3><div class="frame">' + esc(c.research.frame) + "</div></div>";
+    }
+    if (c.research.papers.length) {
+      h += '<div class="sec"><h3>Anchors</h3>' + c.research.papers.map(function (p) {
+        return '<div class="paper"><div class="pt"><a href="' + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.title) + "</a></div>" +
+          '<div class="pmeta">' + esc([p.authors, p.venue, p.year].filter(Boolean).join(" · ")) + "</div>" +
+          '<div class="pnote">' + esc(p.note) + "</div></div>";
+      }).join("") + "</div>";
+    }
+    var panel = document.getElementById("panel");
+    panel.innerHTML = h;
+    panel.querySelectorAll("[data-go]").forEach(function (n) {
+      n.addEventListener("click", function () {
+        var g = n.getAttribute("data-go");
+        if (g === "__back") { selected = null; clearHL(); reset(); } else select(g);
+      });
+    });
+    panel.scrollTop = 0;
+  }
+
+  function reset() {
+    document.getElementById("panel").innerHTML =
+      '<p class="hint">Select a construct in the graph to drill in: its schema indicators and interpretation lenses, the ontology edges that connect it, and the frontier + cognitive-science research that grounds its model.</p>' +
+      '<div class="sec"><h3>The five-stage discipline</h3><div class="stages">' +
+      '<span class="stage"><b>1 Observe</b></span><span class="stage"><b>2 Interpret</b></span>' +
+      '<span class="stage"><b>3 Hypothesize</b></span><span class="stage"><b>4 Evidence</b></span>' +
+      '<span class="stage"><b>5 Decide</b> · human-owned</span></div></div>';
+  }
+})();
+</script>
+</body>
+</html>

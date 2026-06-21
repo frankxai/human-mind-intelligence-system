@@ -1,0 +1,169 @@
+{
+  "_comment": "Structured research grounding for the 12 constructs. Single source of truth for the research links the visual explorer surfaces. Prose lives in docs/research/*.md; this file holds the citable anchors. Every url here was checked against a real source. No fabricated metrics. Non-clinical: these anchors ground the CONSTRUCT MODELS, never the profiling of a person.",
+  "schemaVersion": "0.1.0",
+  "thesis": "This System is a non-clinical prediction primitive: it observes cognitive signals and predicts likely responses with confidence, never a diagnosis. That is the human-mind analog of the paradigm frontier labs are building toward in machines — world models and predictive processing, where intelligence is framed as predicting the next state of a system in a learned latent space. The same frame runs through cognitive science (the Bayesian/predictive brain) and through the affective-computing line on predicting emotional response to viewed content. We borrow the framing, not the autonomy: the human owns every decision.",
+  "nonClinicalBoundary": "The affective-computing research below models emotion ELICITED BY CONTENT/MEDIA and grounds the `emotion` construct's lenses. It is cited to ground the model, not to profile, score, surveil, or diagnose any person. Per CANON.md this boundary is non-waivable. No anchor here licenses emotion-detection-on-people or any clinical reading.",
+  "frontier": [
+    {
+      "id": "lecun-amap-2022",
+      "title": "A Path Towards Autonomous Machine Intelligence (JEPA / LV-EBM)",
+      "authors": "Yann LeCun",
+      "year": 2022,
+      "venue": "OpenReview / arXiv 2306.02572",
+      "url": "https://arxiv.org/abs/2306.02572",
+      "note": "Frames machine intelligence around a world model that predicts future representations in latent space rather than generating raw output. The architectural mirror of this System's observe→predict move."
+    },
+    {
+      "id": "ijepa-meta-2023",
+      "title": "I-JEPA: self-supervised learning by predicting in representation space",
+      "authors": "Assran et al. (Meta FAIR)",
+      "year": 2023,
+      "venue": "Meta AI",
+      "url": "https://ai.meta.com/blog/yann-lecun-ai-model-i-jepa/",
+      "note": "First model on LeCun's vision; predicts abstract latent representations, not pixels. V-JEPA (Bardes et al. 2024) and V-JEPA 2 (Assran et al. 2025) extend the line to video dynamics."
+    },
+    {
+      "id": "cosmos-wfm-2025",
+      "title": "Cosmos World Foundation Model Platform for Physical AI",
+      "authors": "NVIDIA",
+      "year": 2025,
+      "venue": "arXiv 2501.03575",
+      "url": "https://arxiv.org/abs/2501.03575",
+      "note": "A world foundation model: a large system trained to understand, simulate, and predict physical environments. The clearest current statement of 'model the world to predict it.'"
+    },
+    {
+      "id": "world-models-survey-2024",
+      "title": "Understanding World or Predicting Future? A Survey of World Models",
+      "authors": "Survey",
+      "year": 2024,
+      "venue": "arXiv 2411.14499",
+      "url": "https://arxiv.org/abs/2411.14499",
+      "note": "Map of the world-model landscape; situates JEPA, Cosmos, and prediction-vs-generation debates."
+    },
+    {
+      "id": "predictive-coding",
+      "title": "Predictive coding / the predictive brain",
+      "authors": "Rao & Ballard; Friston; Clark",
+      "year": 1999,
+      "venue": "review",
+      "url": "https://en.wikipedia.org/wiki/Predictive_coding",
+      "note": "The brain as a prediction engine minimizing prediction error across a cortical hierarchy. The cognitive-science root of the prediction frame."
+    },
+    {
+      "id": "bayesian-brain",
+      "title": "Bayesian approaches to brain function (active inference, free energy)",
+      "authors": "Friston et al.",
+      "year": 2010,
+      "venue": "review",
+      "url": "https://en.wikipedia.org/wiki/Bayesian_approaches_to_brain_function",
+      "note": "Perception and action as Bayesian inference; action selected to minimize expected free energy. Grounds the motivation/behavior/belief edges."
+    },
+    {
+      "id": "sprevak-pp-2024",
+      "title": "An Introduction to Predictive Processing Models of Perception and Decision-Making",
+      "authors": "Sprevak & Smith",
+      "year": 2024,
+      "venue": "Topics in Cognitive Science",
+      "url": "https://onlinelibrary.wiley.com/doi/10.1111/tops.12704",
+      "note": "Accessible, current synthesis of predictive processing across perception and decision-making."
+    },
+    {
+      "id": "kosinski-tom-2024",
+      "title": "Evaluating Large Language Models in Theory of Mind Tasks",
+      "authors": "Michal Kosinski",
+      "year": 2024,
+      "venue": "PNAS 121(45)",
+      "url": "https://www.semanticscholar.org/paper/240001463c167d38766915d882f70ef6573c0454",
+      "note": "False-belief battery on LLMs; reports GPT-4-class performance near older-child levels. Treated as a measurement result with known training-contamination caveats, not proof of mind."
+    },
+    {
+      "id": "emotion-mit-2023",
+      "title": "Computational model mimics humans' ability to predict emotions",
+      "authors": "MIT (Saxe lab line)",
+      "year": 2023,
+      "venue": "MIT News",
+      "url": "https://news.mit.edu/2023/computational-model-mimics-ability-predict-emotions-0605",
+      "note": "A model predicting others' emotional reactions from situation appraisal — appraisal theory made computational."
+    },
+    {
+      "id": "emotion-video-ads",
+      "title": "Decoding viewer emotions in video ads",
+      "authors": "research",
+      "year": 2024,
+      "venue": "PMC",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11530461/",
+      "note": "Predicting emotional response ELICITED BY video content. Cited to ground the emotion construct's lenses; not a tool for profiling viewers."
+    },
+    {
+      "id": "llm-psychometrics-2025",
+      "title": "Large Language Model Psychometrics: A Systematic Review",
+      "authors": "review",
+      "year": 2025,
+      "venue": "arXiv 2505.08245",
+      "url": "https://arxiv.org/abs/2505.08245",
+      "note": "How mental-construct measurement is being applied to models; relevant to identity/metacognition framing, with validity caveats."
+    }
+  ],
+  "constructs": {
+    "attention": {
+      "labs": ["cognitive science", "Meta FAIR"],
+      "frame": "Predictive processing recasts attention as precision-weighting — the brain up-weights prediction errors it expects to be informative. JEPA's masked-prediction objective is a machine echo: learn by predicting the masked, salient part.",
+      "papers": ["predictive-coding", "sprevak-pp-2024", "ijepa-meta-2023"]
+    },
+    "memory": {
+      "labs": ["cognitive science"],
+      "frame": "World models carry a latent state that persists and is updated — a functional memory. The construct's classic encoding/storage/retrieval lenses sit under that frame; durable change still routes through memory.",
+      "papers": ["world-models-survey-2024", "predictive-coding"]
+    },
+    "emotion": {
+      "labs": ["MIT", "affective computing"],
+      "frame": "The user's named anchor: predicting emotional response to viewed content. Appraisal theory makes this computational (situation → predicted affect); the dimensional valence-arousal lens makes it measurable. Grounds the model, never profiles a person.",
+      "papers": ["emotion-mit-2023", "emotion-video-ads", "sprevak-pp-2024"]
+    },
+    "motivation": {
+      "labs": ["cognitive science"],
+      "frame": "Active inference selects action to minimize expected free energy rather than to chase reward — a prediction-first account of what gets pursued. Maps the emotion→motivation and identity→motivation edges.",
+      "papers": ["bayesian-brain", "sprevak-pp-2024"]
+    },
+    "identity": {
+      "labs": ["cognitive science"],
+      "frame": "The self-model as a stable, narrative prior the system maintains. LLM-psychometrics work probes whether models carry stable trait-like profiles — a cautionary mirror, with validity caveats, for how we model identity.",
+      "papers": ["llm-psychometrics-2025", "world-models-survey-2024"]
+    },
+    "learning": {
+      "labs": ["Meta FAIR", "NVIDIA"],
+      "frame": "JEPA and world foundation models learn by minimizing prediction error in latent space — the engineering of 'durable change from experience.' The behavior→learning feedback edge is the loop these systems formalize.",
+      "papers": ["lecun-amap-2022", "cosmos-wfm-2025", "world-models-survey-2024"]
+    },
+    "belief": {
+      "labs": ["cognitive science"],
+      "frame": "Belief as a prior updated by evidence — the Bayesian brain. Learning modulates belief (Bayesian-style update); social-cognition modulates it too (social inference shifts priors).",
+      "papers": ["bayesian-brain", "predictive-coding"]
+    },
+    "behavior": {
+      "labs": ["cognitive science"],
+      "frame": "In active inference, action is how a system makes its predictions come true — changing the input to fit the model. Observable behavior is where committed intention and belief become signal the model can read.",
+      "papers": ["bayesian-brain", "sprevak-pp-2024"]
+    },
+    "consciousness": {
+      "labs": ["cognitive science"],
+      "frame": "The most contested construct. Predictive-processing accounts treat reportable (access) content as the substrate metacognition inspects. The System stays strictly descriptive here and makes no phenomenal claims.",
+      "papers": ["predictive-coding", "world-models-survey-2024"]
+    },
+    "metacognition": {
+      "labs": ["cognitive science"],
+      "frame": "Monitoring and control of one's own cognition — the self-correction layer. Confidence and calibration are prediction-about-prediction; model-uncertainty work is the engineering parallel.",
+      "papers": ["sprevak-pp-2024", "llm-psychometrics-2025"]
+    },
+    "decision-making": {
+      "labs": ["cognitive science"],
+      "frame": "Predictive processing frames choice as expected-free-energy minimization; prospect theory and dual-process models (the schema's lenses) sit inside it. Emotion, belief, motivation, and metacognition all feed this node.",
+      "papers": ["sprevak-pp-2024", "bayesian-brain"]
+    },
+    "social-cognition": {
+      "labs": ["Stanford", "LLM evaluation"],
+      "frame": "Theory of mind — modeling other minds — is the construct frontier labs probe most directly in models. Kosinski's false-belief battery is a measurement of that capacity (with training-contamination caveats), not proof of mind.",
+      "papers": ["kosinski-tom-2024", "llm-psychometrics-2025"]
+    }
+  }
+}

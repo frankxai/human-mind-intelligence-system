@@ -28,8 +28,10 @@ cognitive one.
 |---|---|
 | [`schemas/`](schemas) | 12 JSON Schemas (draft 2020-12), one per construct — each models an *observation* |
 | [`schemas/README.md`](schemas/README.md) | Index of all twelve schemas + the shared shape |
-| [`ontology/ontology.md`](ontology/ontology.md) | How the twelve constructs relate (typed edges) |
+| [`ontology/ontology.md`](ontology/ontology.md) | How the twelve constructs relate (typed edges) · machine-readable in [`ontology/edges.json`](ontology/edges.json) |
 | [`docs/response-prediction.md`](docs/response-prediction.md) | The non-clinical prediction primitive |
+| [`docs/explorer/index.html`](docs/explorer/index.html) | Interactive explorer — drill into every construct, schema, edge, and its research grounding (open in a browser) |
+| [`docs/research/`](docs/research) | Research grounding — frontier AI-lab + cognitive-science anchors per construct |
 | [`CANON.md`](CANON.md) | Composes SIP + the human-mind canon; declines its own |
 | [`CLAUDE.md`](CLAUDE.md) / [`AGENTS.md`](AGENTS.md) | Operating doctrine for agents |
 | [`MEMORY.md`](MEMORY.md) | Version, commitments, anti-scope |
@@ -63,6 +65,28 @@ The `observation` field holds only what was seen. Any reading of *what it means*
 goes in the separate `interpretation` object, with its own confidence and evidence.
 That separation is the point — see
 [`docs/response-prediction.md`](docs/response-prediction.md).
+
+## Explore and ground it
+
+Two surfaces sit on top of the schemas without changing them:
+
+- **[Visual explorer](docs/explorer/index.html)** — a self-contained, zero-build page
+  (open it directly in a browser). Click any of the twelve constructs to see its
+  schema indicators, interpretation lenses, the ontology edges that connect it, and
+  the research that grounds its model. Its data is generated from the schemas,
+  [`ontology/edges.json`](ontology/edges.json), and
+  [`docs/research/research.json`](docs/research/research.json):
+
+  ```bash
+  node scripts/build-explorer.mjs          # regenerate docs/explorer/explorer-data.js
+  node scripts/build-explorer.mjs --check  # fail if stale (CI-friendly)
+  ```
+
+- **[Research grounding](docs/research/)** — why this System is, at its core, a
+  *non-clinical prediction primitive*, and how that maps to frontier work on world
+  foundation models and the predictive brain. Start with
+  [`docs/research/frontier-map.md`](docs/research/frontier-map.md). The boundary
+  holds: this grounds the construct *models*, never the profiling of a person.
 
 ## Safety principle
 

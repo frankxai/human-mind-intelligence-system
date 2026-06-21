@@ -10,6 +10,10 @@ within one.
 The ontology is deliberately small. It is a working graph, not an attempt to
 settle open questions in cognitive science.
 
+> The 28 edges below are also available machine-readable in
+> [`edges.json`](edges.json) — the single source the visual explorer reads. Keep
+> the two in sync.
+
 ## Constructs (nodes)
 
 Each node maps 1:1 to a canon module and to a schema in [`../schemas/`](../schemas).
