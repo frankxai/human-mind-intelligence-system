@@ -94,7 +94,7 @@
       <p class="thesis" id="thesis"></p>
       <div class="banner"><b>Non-clinical.</b> This models cognition and predicts likely responses with confidence. It never diagnoses, names disorders, or prescribes. Every reading is a labelled, falsifiable hypothesis a human decides on.</div>
     </header>
-    <div class="graph-area"><svg id="svg" viewBox="0 0 800 700" preserveAspectRatio="xMidYMid meet" aria-label="Graph of 12 cognitive constructs and 28 typed edges"></svg></div>
+    <div class="graph-area"><svg id="svg" viewBox="0 0 800 700" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Graph of 12 cognitive constructs and 28 typed edges"></svg></div>
     <div class="legend" id="legend"></div>
   </div>
 
@@ -210,7 +210,7 @@
   }
 
   var byId = Object.fromEntries(D.constructs.map(function (c) { return [c.id, c]; }));
-  function esc(s) { return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function esc(s) { return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;"); }
 
   function relRow(id, type, dir) {
     var t = byId[id]; var color = COLORS[type];

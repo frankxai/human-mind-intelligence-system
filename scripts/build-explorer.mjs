@@ -103,7 +103,8 @@ const outAbs = join(root, outPath);
 
 if (checkOnly) {
   const existing = existsSync(outAbs) ? readFileSync(outAbs, "utf8") : "";
-  if (existing !== out) {
+  const norm = (s) => s.replace(/\r\n/g, "\n"); // tolerate CRLF checkouts (Windows)
+  if (norm(existing) !== norm(out)) {
     console.error(`DRIFT: ${outPath} is stale. Run: node scripts/build-explorer.mjs`);
     process.exit(1);
   }
