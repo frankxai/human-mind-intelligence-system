@@ -1,0 +1,40 @@
+{
+  "_comment": "Machine-readable companion to ontology.md. Single source of truth for the 28 typed edges between the 12 constructs. Consumed by scripts/build-explorer.mjs. If you change an edge here, mirror it in ontology.md (and vice versa).",
+  "schemaVersion": "0.1.0",
+  "edgeTypes": {
+    "gates": "A controls what B receives.",
+    "feeds": "A supplies content or signal that B operates on.",
+    "modulates": "A shifts the parameters of B without supplying its content.",
+    "reflects-on": "A takes B as its object."
+  },
+  "edges": [
+    { "from": "attention", "type": "gates", "to": "memory" },
+    { "from": "attention", "type": "gates", "to": "consciousness" },
+    { "from": "memory", "type": "feeds", "to": "learning" },
+    { "from": "memory", "type": "feeds", "to": "identity" },
+    { "from": "memory", "type": "feeds", "to": "belief" },
+    { "from": "learning", "type": "modulates", "to": "belief" },
+    { "from": "learning", "type": "modulates", "to": "behavior" },
+    { "from": "emotion", "type": "modulates", "to": "motivation" },
+    { "from": "emotion", "type": "modulates", "to": "attention" },
+    { "from": "emotion", "type": "modulates", "to": "memory" },
+    { "from": "emotion", "type": "modulates", "to": "decision-making" },
+    { "from": "motivation", "type": "feeds", "to": "behavior" },
+    { "from": "motivation", "type": "feeds", "to": "decision-making" },
+    { "from": "belief", "type": "modulates", "to": "decision-making" },
+    { "from": "belief", "type": "modulates", "to": "behavior" },
+    { "from": "decision-making", "type": "feeds", "to": "behavior" },
+    { "from": "behavior", "type": "feeds", "to": "learning" },
+    { "from": "identity", "type": "modulates", "to": "behavior" },
+    { "from": "identity", "type": "modulates", "to": "motivation" },
+    { "from": "metacognition", "type": "reflects-on", "to": "attention" },
+    { "from": "metacognition", "type": "reflects-on", "to": "memory" },
+    { "from": "metacognition", "type": "reflects-on", "to": "learning" },
+    { "from": "metacognition", "type": "reflects-on", "to": "decision-making" },
+    { "from": "consciousness", "type": "feeds", "to": "metacognition" },
+    { "from": "social-cognition", "type": "feeds", "to": "identity" },
+    { "from": "social-cognition", "type": "modulates", "to": "belief" },
+    { "from": "social-cognition", "type": "modulates", "to": "behavior" },
+    { "from": "social-cognition", "type": "modulates", "to": "emotion" }
+  ]
+}

@@ -11,6 +11,24 @@ response-prediction primitive, canon + doctrine.
 The schema family version (`schemaVersion`, and the `const` in every schema) tracks
 this: **0.1.0**.
 
+### Additive since v0.1.0 (no schema change)
+
+A visual + research layer was added around the schemas without touching their shape
+or the observation/interpretation contract:
+
+- `ontology/edges.json` — machine-readable companion to `ontology.md` (the 28 edges).
+- `docs/research/` — research grounding (`research.json` source + `frontier-map.md`
+  synthesis + `constructs/*.md`). Frames the System as a non-clinical prediction
+  primitive, mapped to world-foundation-model + predictive-brain research. The
+  non-clinical boundary is restated and held: grounds the models, never profiles a
+  person.
+- `docs/explorer/` — a self-contained, zero-build interactive explorer
+  (`index.html` + generated `explorer-data.js`).
+- `scripts/build-explorer.mjs` — zero-dependency generator (schemas + edges +
+  research → explorer data); `--check` flags drift.
+
+The schemas remain the single source of truth; this layer is read-only over them.
+
 ## Commitments
 
 These hold across every version. Breaking one is a regression, not a feature.
