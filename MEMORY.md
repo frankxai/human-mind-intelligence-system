@@ -11,6 +11,38 @@ response-prediction primitive, canon + doctrine.
 The schema family version (`schemaVersion`, and the `const` in every schema) tracks
 this: **0.1.0**.
 
+### Human Atlas layer (added 2026-07-07)
+
+A second operationalized model alongside human-mind: the **dispositional layer**
+(core qualities + Ofman quadrants). Shares the schema family version and every
+discipline. Canon lives upstream in `mind-intelligence-systems`; this repo
+operationalizes it. Design: [`docs/human-atlas.md`](docs/human-atlas.md).
+
+Added: `schemas/quality.schema.json`, `schemas/quality-observation.schema.json`,
+`schemas/quadrant-hypothesis.schema.json`; the English-essential lexicon at
+`models/human-atlas/qualities/core-qualities.en.json` (14 qualities); the quadrant
+primitive doc; and a zero-dependency toolkit at `tools/` (loader, filter, eval,
+shared subset validator).
+
+Decisions recorded so they are not re-litigated:
+
+- **English is essential, foreign terms are additional.** Every quality's English
+  name + definition + quadrant is complete alone. `precisionAnchors` are optional
+  overlays. This was a direct instruction: lean on English, add other languages
+  only where they raise resolution.
+- **Anchors must earn their place, measurably.** `tools/hma_filter.py` scores each
+  anchor (novelty × elaboration × richness, an MDL proxy for embedding distance)
+  and writes `earned`/`resolutionScore`. Decorative anchors stay flagged
+  `earned: false`, not deleted — the verdict is recorded in-data. Seed data: 14
+  earned, 2 decoys cut.
+- **The quadrant is a hypothesis generator, not a personality type.** Routed
+  through the response-prediction discipline. `tools/hma_eval.py` tests the allergy
+  edge against labelled scenarios (seed: 0.78 accuracy, 2.33× over baseline).
+- **The non-clinical guardrail is executable.** `tools/hma_loader.py` enforces the
+  confidence caps and a clinical-vocabulary denylist in code, not just prose.
+- **A quality is not a thirteenth cognitive construct.** It is dispositional and
+  redefines none of the twelve.
+
 ## Commitments
 
 These hold across every version. Breaking one is a regression, not a feature.

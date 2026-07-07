@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/frankxai/human-mind-intelligence-system/schemas/quality-observation.schema.json",
+  "title": "Quality Observation",
+  "description": "An observation of a person drawing on (or overextending) a Human Atlas core quality. Models what was observed and keeps interpretation strictly separate. Non-clinical: never a diagnosis, never a fixed personality label.",
+  "type": "object",
+  "required": ["construct", "quality", "observation", "confidence"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "0.1.0", "description": "Version of the human-mind schema family this document conforms to." },
+    "construct": {
+      "type": "string",
+      "const": "quality",
+      "description": "Marks this as a Human Atlas quality observation, distinct from the twelve cognitive-module observations."
+    },
+    "quality": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The English quality id this observation is about, e.g. 'decisive'. Must match an entry in models/human-atlas/qualities/core-qualities.en.json."
+    },
+    "observation": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What was actually observed, in plain language. Description only — no inference, no label."
+    },
+    "indicators": {
+      "type": "array",
+      "description": "Observable markers, drawn from the quality's indicators. Each is a thing you can point at.",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true,
+      "default": []
+    },
+    "context": {
+      "type": "object",
+      "description": "Situational frame. Helps later interpretation without contaminating the observation.",
+      "additionalProperties": false,
+      "properties": {
+        "setting": { "type": "string" },
+        "task": { "type": "string" },
+        "duration": { "type": "string" }
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Confidence in the OBSERVATION being accurate — not in any interpretation."
+    },
+    "interpretation": {
+      "type": "object",
+      "description": "OPTIONAL and strictly separate. A labelled hypothesis about what the observation might mean, typically a quadrant projection. Never a diagnosis. Its confidence must not exceed the observation's.",
+      "required": ["hypothesis", "confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "hypothesis": { "type": "string", "minLength": 1, "description": "A tentative, falsifiable reading." },
+        "quadrantPosition": {
+          "type": "string",
+          "enum": ["coreQuality", "pitfall", "challenge", "allergy"],
+          "description": "Where on the quality's quadrant this behaviour reads, if a quadrant lens is used."
+        },
+        "evidence": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "alternatives": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1, "description": "Confidence in the INTERPRETATION. Must be <= observation confidence." }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Where this observation came from and who recorded it.",
+      "additionalProperties": false,
+      "properties": {
+        "source": { "type": "string", "enum": ["self-report", "third-party-report", "agent-inference", "instrument", "behavioral-log", "unknown"], "default": "unknown" },
+        "observer": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "reliability": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    }
+  }
+}
