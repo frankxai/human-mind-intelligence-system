@@ -34,21 +34,26 @@ def main() -> int:
 
     hits = 0
     baseline_sum = 0.0
+    scored = 0
     print("quadrant eval — does the allergy prediction beat chance?\n")
     for sc in scenarios:
-        entry = lex[sc["subjectCoreQuality"]]
-        predicted = entry["quadrant"]["allergy"].lower()
-        actual = sc["observedStrongestIrritation"].lower()
-        candidates = [c.lower() for c in sc["candidateIrritants"]]
-        hit = predicted == actual
+        quality_id = sc.get("subjectCoreQuality")
+        if quality_id not in lex:
+            print(f"  [skip] {str(quality_id):<13} (not in lexicon)")
+            continue
+        predicted = lex[quality_id].get("quadrant", {}).get("allergy", "").lower()
+        actual = str(sc.get("observedStrongestIrritation", "")).lower()
+        candidates = [c.lower() for c in sc.get("candidateIrritants", [])]
+        hit = bool(predicted) and predicted == actual
         hits += hit
-        baseline_sum += 1.0 / len(candidates)  # expected accuracy of a random pick
+        scored += 1
+        baseline_sum += 1.0 / len(candidates) if candidates else 0.0  # expected accuracy of a random pick
         mark = "hit " if hit else "miss"
-        print(f"  [{mark}] {sc['subjectCoreQuality']:<13} predict={predicted:<14} actual={actual}")
+        print(f"  [{mark}] {quality_id:<13} predict={predicted:<14} actual={actual}")
 
-    n = len(scenarios)
-    model_acc = hits / n
-    baseline_acc = baseline_sum / n
+    n = scored
+    model_acc = hits / n if n else 0.0
+    baseline_acc = baseline_sum / n if n else 0.0
     lift = model_acc / baseline_acc if baseline_acc else float("inf")
     print(f"\nscenarios      : {n}")
     print(f"model accuracy : {model_acc:.3f}  ({hits}/{n})")

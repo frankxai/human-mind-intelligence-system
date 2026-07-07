@@ -19,6 +19,7 @@ Usage:  python3 tools/hma_loader.py
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -40,7 +41,9 @@ CLINICAL_DENYLIST = [
 ]
 
 
-def _schema_for(obj: dict) -> str:
+def _schema_for(obj) -> str:
+    if not isinstance(obj, dict):
+        return ""
     if "predictions" in obj and "from" in obj:
         return "quadrant-hypothesis"
     if obj.get("construct") == "quality" and "observation" in obj:
@@ -53,9 +56,8 @@ def _schema_for(obj: dict) -> str:
 def _clinical_hits(obj, path="$") -> list[str]:
     hits = []
     if isinstance(obj, str):
-        low = obj.lower()
         for term in CLINICAL_DENYLIST:
-            if term in low:
+            if re.search(r"\b" + re.escape(term) + r"\b", obj, re.IGNORECASE):
                 hits.append(f"{path}: clinical term '{term}' in {obj!r}")
     elif isinstance(obj, dict):
         for k, v in obj.items():
@@ -70,15 +72,17 @@ def _confidence_caps(obj: dict, kind: str) -> list[str]:
     errs = []
     if kind == "quality-observation":
         interp = obj.get("interpretation")
-        if interp and "confidence" in interp and interp["confidence"] > obj["confidence"]:
-            errs.append(
-                f"interpretation confidence {interp['confidence']} exceeds "
-                f"observation confidence {obj['confidence']}"
-            )
+        if isinstance(interp, dict) and "confidence" in interp and "confidence" in obj:
+            if interp["confidence"] > obj["confidence"]:
+                errs.append(
+                    f"interpretation confidence {interp['confidence']} exceeds "
+                    f"observation confidence {obj['confidence']}"
+                )
     if kind == "quadrant-hypothesis":
-        cap = min((f["confidence"] for f in obj.get("from", [])), default=1.0)
+        confidences = [f["confidence"] for f in obj.get("from", []) if isinstance(f, dict) and "confidence" in f]
+        cap = min(confidences, default=1.0)
         for i, pred in enumerate(obj.get("predictions", [])):
-            if pred["confidence"] > cap:
+            if isinstance(pred, dict) and "confidence" in pred and pred["confidence"] > cap:
                 errs.append(
                     f"predictions[{i}] confidence {pred['confidence']} exceeds "
                     f"source-observation cap {cap}"
@@ -93,16 +97,18 @@ def main() -> int:
 
     # 1. The lexicon: validate every entry against quality.schema.json.
     lex = json.loads(LEXICON.read_text())
-    for entry in lex["qualities"]:
+    qualities = lex.get("qualities", []) if isinstance(lex, dict) else []
+    for entry in qualities:
         checked += 1
-        errs = validate(entry, schemas["quality"], f"quality:{entry['id']}")
-        errs += _clinical_hits(entry, f"quality:{entry['id']}")
+        entry_id = entry.get("id", "unknown") if isinstance(entry, dict) else "<non-object>"
+        errs = validate(entry, schemas["quality"], f"quality:{entry_id}")
+        errs += _clinical_hits(entry, f"quality:{entry_id}")
         if errs:
             failures += 1
-            print(f"FAIL  lexicon '{entry['id']}'")
+            print(f"FAIL  lexicon '{entry_id}'")
             for e in errs:
                 print(f"      {e}")
-    print(f"lexicon: {len(lex['qualities'])} entries checked")
+    print(f"lexicon: {len(qualities)} entries checked")
 
     # 2. Fixtures: positive validate, negative expected-to-fail.
     for fx in sorted(FIXTURES.glob("*.json")):

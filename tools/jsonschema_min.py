@@ -50,7 +50,11 @@ def validate(instance: Any, schema: dict, path: str = "$") -> list[str]:
         errors.append(f"{path}: expected type {expected_type}, got {type(instance).__name__}")
         return errors  # further checks assume the type held
 
-    if expected_type == "object" and isinstance(instance, dict):
+    # Keyword checks are gated on the instance's runtime type, not on the schema
+    # declaring `type`. A subschema that omits `type` but carries `required`,
+    # `properties`, `minLength`, etc. is still enforced — a validator that
+    # silently skipped those would give false confidence.
+    if isinstance(instance, dict) and expected_type in (None, "object"):
         props = schema.get("properties", {})
         for req in schema.get("required", []):
             if req not in instance:
@@ -63,7 +67,7 @@ def validate(instance: Any, schema: dict, path: str = "$") -> list[str]:
             if key in instance:
                 errors.extend(validate(instance[key], subschema, f"{path}.{key}"))
 
-    if expected_type == "array" and isinstance(instance, list):
+    if isinstance(instance, list) and expected_type in (None, "array"):
         if schema.get("uniqueItems") and len(instance) != len({repr(x) for x in instance}):
             errors.append(f"{path}: array items must be unique")
         item_schema = schema.get("items")
@@ -71,12 +75,12 @@ def validate(instance: Any, schema: dict, path: str = "$") -> list[str]:
             for i, item in enumerate(instance):
                 errors.extend(validate(item, item_schema, f"{path}[{i}]"))
 
-    if expected_type == "string" and isinstance(instance, str):
+    if isinstance(instance, str) and expected_type in (None, "string"):
         min_len = schema.get("minLength")
         if min_len is not None and len(instance) < min_len:
             errors.append(f"{path}: string shorter than minLength {min_len}")
 
-    if expected_type in ("number", "integer") and isinstance(instance, (int, float)):
+    if isinstance(instance, (int, float)) and not isinstance(instance, bool) and expected_type in (None, "number", "integer"):
         if "minimum" in schema and instance < schema["minimum"]:
             errors.append(f"{path}: {instance} < minimum {schema['minimum']}")
         if "maximum" in schema and instance > schema["maximum"]:
