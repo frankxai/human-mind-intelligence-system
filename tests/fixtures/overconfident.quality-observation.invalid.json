@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "0.1.0",
+  "construct": "quality",
+  "quality": "conscientious",
+  "observation": "Re-checked the same figures three times before sending the report.",
+  "confidence": 0.6,
+  "interpretation": {
+    "hypothesis": "Operating from conscientiousness, tipping toward rigidity under deadline.",
+    "quadrantPosition": "pitfall",
+    "confidence": 0.9
+  }
+}

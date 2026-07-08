@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "0.1.0",
+  "quality": "decisive",
+  "from": [
+    { "construct": "quality", "observationRef": "obs-2026-07-05-decisive-001", "confidence": 0.85 }
+  ],
+  "predictions": [
+    {
+      "position": "allergy",
+      "response": "Given decisiveness observed, likely to be most irritated by passivity in others — colleagues who defer or wait rather than commit.",
+      "confidence": 0.55,
+      "evidence": ["quadrant: decisiveness -> allergy passivity", "closed options fast under mild time pressure"],
+      "falsifier": "Subject shows patience with a deferring colleague and is instead irritated by another's pushiness."
+    },
+    {
+      "position": "pitfall",
+      "response": "Under sustained time pressure, decisiveness may overextend into pushiness.",
+      "confidence": 0.35,
+      "evidence": ["closed three options within five minutes"],
+      "falsifier": "Subject slows down and invites dissent when stakes rise."
+    }
+  ],
+  "abstainOnLowEvidence": true
+}
