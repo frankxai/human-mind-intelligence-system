@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/frankxai/human-mind-intelligence-system/schemas/quality.schema.json",
+  "title": "Core Quality (Human Atlas lexicon entry)",
+  "description": "One dispositional core quality in the Human Atlas, English-canonical. English name and definition are required; foreign-language precision anchors are optional overlays that must earn their place. This is a lexicon entry, not an observation of a person. Non-clinical: a quality is a disposition to describe, never a label to assign.",
+  "type": "object",
+  "required": ["id", "quality", "definition", "quadrant"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0",
+      "description": "Version of the human-mind schema family this document conforms to."
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable lowercase identifier for the quality, e.g. 'decisive'."
+    },
+    "quality": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The ESSENTIAL layer: the English name of the quality. Always present. English gives reach; it is the canonical key everything else attaches to."
+    },
+    "definition": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Plain-English definition of the quality as a disposition. Complete on its own without any foreign anchor."
+    },
+    "indicators": {
+      "type": "array",
+      "description": "Observable behavioural markers that a person is drawing on this quality. Things you can point at, not conclusions.",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true,
+      "default": []
+    },
+    "quadrant": {
+      "type": "object",
+      "description": "Ofman core-quality quadrant. A hypothesis-generating structure, NOT a personality type. Each field is the label of a disposition, held loosely.",
+      "required": ["coreQuality", "pitfall", "challenge", "allergy"],
+      "additionalProperties": false,
+      "properties": {
+        "coreQuality": { "type": "string", "minLength": 1, "description": "The quality at strength." },
+        "pitfall": { "type": "string", "minLength": 1, "description": "The quality overextended (too much of a good thing)." },
+        "challenge": { "type": "string", "minLength": 1, "description": "The balancing positive opposite of the pitfall." },
+        "allergy": { "type": "string", "minLength": 1, "description": "The challenge overextended in others — what the person tends to find hardest to tolerate." }
+      }
+    },
+    "precisionAnchors": {
+      "type": "array",
+      "description": "OPTIONAL foreign-language anchors. Additional, never essential. Each must state what it adds beyond the English definition; whether it earns its place is decided by tools/hma_filter.py, not by assertion.",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["lang", "term", "gloss", "adds"],
+        "additionalProperties": false,
+        "properties": {
+          "lang": {
+            "type": "string",
+            "enum": ["de", "ja", "nl", "fr", "it", "es", "sv", "zh"],
+            "description": "BCP-47 primary language subtag of the anchor term."
+          },
+          "term": { "type": "string", "minLength": 1, "description": "The foreign-language term in its native script." },
+          "gloss": { "type": "string", "minLength": 1, "description": "A short English gloss of the term." },
+          "adds": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What semantic resolution this term adds that the English definition leaves implicit. If you cannot name what it adds, it does not belong."
+          },
+          "earned": {
+            "type": "boolean",
+            "description": "Whether the anchor earns its place. Written by tools/hma_filter.py — do not set by hand."
+          },
+          "resolutionScore": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Information residual of 'adds'/'gloss' over the English definition, in [0,1]. Written by tools/hma_filter.py."
+          }
+        }
+      }
+    }
+  }
+}

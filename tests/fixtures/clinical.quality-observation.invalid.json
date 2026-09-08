@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "0.1.0",
+  "construct": "quality",
+  "quality": "composed",
+  "observation": "Stayed steady in the meeting; a colleague's note speculated this was masking a depression diagnosis.",
+  "confidence": 0.7
+}

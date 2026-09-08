@@ -1,0 +1,14 @@
+{
+  "note": "Labelled scenarios for tools/hma_eval.py. Each records a subject's core quality, the candidate irritants they were exposed to, and which one they were observed to react most strongly against. Labels are intentionally noisy — two subjects react against something other than the quadrant allergy — so the eval reports honest signal, not a rigged 100%.",
+  "scenarios": [
+    { "id": "s1", "subjectCoreQuality": "decisive", "candidateIrritants": ["passivity", "pushiness", "sloppiness"], "observedStrongestIrritation": "passivity" },
+    { "id": "s2", "subjectCoreQuality": "conscientious", "candidateIrritants": ["sloppiness", "rigidity", "coldness"], "observedStrongestIrritation": "sloppiness" },
+    { "id": "s3", "subjectCoreQuality": "tactful", "candidateIrritants": ["bluntness", "evasiveness", "flakiness"], "observedStrongestIrritation": "bluntness" },
+    { "id": "s4", "subjectCoreQuality": "helpful", "candidateIrritants": ["selfishness", "meddling", "recklessness"], "observedStrongestIrritation": "selfishness" },
+    { "id": "s5", "subjectCoreQuality": "composed", "candidateIrritants": ["impulsiveness", "detachment", "opportunism"], "observedStrongestIrritation": "impulsiveness" },
+    { "id": "s6", "subjectCoreQuality": "courageous", "candidateIrritants": ["cowardice", "recklessness", "superficiality"], "observedStrongestIrritation": "cowardice" },
+    { "id": "s7", "subjectCoreQuality": "principled", "candidateIrritants": ["opportunism", "rigidity", "coldness"], "observedStrongestIrritation": "opportunism" },
+    { "id": "s8", "subjectCoreQuality": "persevering", "candidateIrritants": ["flakiness", "stubbornness", "passivity"], "observedStrongestIrritation": "stubbornness" },
+    { "id": "s9", "subjectCoreQuality": "measured", "candidateIrritants": ["recklessness", "timidity", "bluntness"], "observedStrongestIrritation": "timidity" }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "0.1.0",
+  "construct": "quality",
+  "quality": "decisive",
+  "observation": "In a 20-minute planning call, closed three open options within the first five minutes and moved the group to action items.",
+  "indicators": ["closes options quickly", "states a call"],
+  "context": { "setting": "team planning call", "duration": "PT20M" },
+  "confidence": 0.85,
+  "interpretation": {
+    "hypothesis": "May be operating from decisiveness; if pushed under time pressure this could read as pushiness to slower-moving peers.",
+    "quadrantPosition": "coreQuality",
+    "evidence": ["closed three options in five minutes", "moved group to action"],
+    "alternatives": ["The options were genuinely low-stakes and closing them fast was correct, not a disposition."],
+    "confidence": 0.5
+  },
+  "provenance": { "source": "third-party-report", "observer": "meeting-notes", "timestamp": "2026-07-05T10:00:00Z", "reliability": 0.7 }
+}

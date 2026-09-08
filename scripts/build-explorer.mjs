@@ -25,6 +25,11 @@ const edgesDoc = readJSON("ontology/edges.json");
 const research = readJSON("docs/research/research.json");
 
 const schemaDir = "schemas";
+// The 12 constructs are exactly the ontology nodes. Other schema families in
+// schemas/ (e.g. the Human Atlas dispositional layer: quality*, quadrant*) are
+// not ontology nodes and are skipped — this explorer covers the human-mind graph.
+const constructIds = new Set(edgesDoc.edges.flatMap((e) => [e.from, e.to]));
+
 const schemaFiles = readdirSync(join(root, schemaDir))
   .filter((f) => f.endsWith(".schema.json"))
   .sort();
@@ -32,11 +37,12 @@ const schemaFiles = readdirSync(join(root, schemaDir))
 const frontierById = Object.fromEntries(research.frontier.map((f) => [f.id, f]));
 
 // --- derive per-construct records -------------------------------------------
-const constructs = schemaFiles.map((file) => {
-  const s = readJSON(join(schemaDir, file));
+const constructs = schemaFiles
+  .map((file) => ({ file, schema: readJSON(join(schemaDir, file)) }))
+  .filter(({ schema }) => constructIds.has(schema.properties?.construct?.const))
+  .map(({ file, schema: s }) => {
   const props = s.properties || {};
-  const id = props.construct?.const;
-  if (!id) throw new Error(`No construct const in ${file}`);
+  const id = props.construct.const;
 
   const ind = props.indicators || {};
   const indicators = (ind.items && ind.items.enum) || ind.enum || [];

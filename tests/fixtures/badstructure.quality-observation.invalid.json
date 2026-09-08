@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "0.1.0",
+  "construct": "quality",
+  "quality": "tactful",
+  "observation": "Delivered difficult feedback and the recipient thanked them afterward.",
+  "confidence": 0.8,
+  "interpretation": {
+    "hypothesis": "Reads as tact.",
+    "quadrantPosition": "core",
+    "confidence": 0.5
+  },
+  "mood": "positive"
+}

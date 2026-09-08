@@ -1,0 +1,396 @@
+{
+  "schemaVersion": "0.1.0",
+  "note": "English-essential Human Atlas core-quality lexicon. The English name + definition + quadrant are complete on their own. precisionAnchors are optional overlays; the 'earned'/'resolutionScore' fields are written by tools/hma_filter.py, never by hand.",
+  "qualities": [
+    {
+      "schemaVersion": "0.1.0",
+      "id": "decisive",
+      "quality": "Decisive",
+      "definition": "Readily commits to a course of action and moves, rather than staying open indefinitely.",
+      "indicators": [
+        "closes options quickly",
+        "states a call",
+        "acts before full certainty"
+      ],
+      "quadrant": {
+        "coreQuality": "Decisiveness",
+        "pitfall": "Pushiness",
+        "challenge": "Patience",
+        "allergy": "Passivity"
+      },
+      "precisionAnchors": [
+        {
+          "lang": "de",
+          "term": "Tatkraft",
+          "gloss": "drive, vigour to act",
+          "adds": "couples the resolve to decide with a sustained physical energy of execution — momentum carried through effort, not just the moment of choosing",
+          "resolutionScore": 1.0,
+          "earned": true
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "conscientious",
+      "quality": "Conscientious",
+      "definition": "Takes care to do things properly and completely, holding oneself to a standard.",
+      "indicators": [
+        "checks the work",
+        "meets commitments",
+        "attends to detail"
+      ],
+      "quadrant": {
+        "coreQuality": "Conscientiousness",
+        "pitfall": "Rigidity",
+        "challenge": "Flexibility",
+        "allergy": "Sloppiness"
+      },
+      "precisionAnchors": [
+        {
+          "lang": "de",
+          "term": "Gewissenhaftigkeit",
+          "gloss": "conscientiousness",
+          "adds": "binds careful work to a felt moral duty of conscience — the standard is owed, not merely preferred",
+          "resolutionScore": 0.9,
+          "earned": true
+        },
+        {
+          "lang": "de",
+          "term": "sorgfältig",
+          "gloss": "careful, conscientious",
+          "adds": "careful and conscientious",
+          "resolutionScore": 0.0,
+          "earned": false
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "helpful",
+      "quality": "Helpful",
+      "definition": "Attends to others' needs and gives support readily.",
+      "indicators": [
+        "offers assistance unprompted",
+        "notices what others need",
+        "gives time"
+      ],
+      "quadrant": {
+        "coreQuality": "Helpfulness",
+        "pitfall": "Meddling",
+        "challenge": "Self-respect",
+        "allergy": "Selfishness"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "composed",
+      "quality": "Composed",
+      "definition": "Stays calm and clear-headed under pressure.",
+      "indicators": [
+        "steady tone under stress",
+        "does not rush",
+        "keeps perspective"
+      ],
+      "quadrant": {
+        "coreQuality": "Composure",
+        "pitfall": "Detachment",
+        "challenge": "Engagement",
+        "allergy": "Impulsiveness"
+      },
+      "precisionAnchors": [
+        {
+          "lang": "de",
+          "term": "Besonnenheit",
+          "gloss": "level-headedness, prudence",
+          "adds": "deliberate weighing kept intact precisely while under pressure — judgment that does not narrow when arousal rises",
+          "resolutionScore": 0.833,
+          "earned": true
+        },
+        {
+          "lang": "de",
+          "term": "Gelassenheit",
+          "gloss": "equanimity, serenity",
+          "adds": "a settled acceptance that holds outcomes lightly, releasing the grip on what cannot be controlled — an acceptance dimension English 'composed' omits",
+          "resolutionScore": 0.917,
+          "earned": true
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "tactful",
+      "quality": "Tactful",
+      "definition": "Handles delicate situations and people without causing offence.",
+      "indicators": [
+        "reads the room",
+        "times hard messages well",
+        "softens without evading"
+      ],
+      "quadrant": {
+        "coreQuality": "Tact",
+        "pitfall": "Evasiveness",
+        "challenge": "Directness",
+        "allergy": "Bluntness"
+      },
+      "precisionAnchors": [
+        {
+          "lang": "de",
+          "term": "Fingerspitzengefühl",
+          "gloss": "fingertip feeling",
+          "adds": "an embodied, near-tactile sense for the exact right touch in a delicate moment — precision of feel rather than of rule, calibrated live to the specific person",
+          "resolutionScore": 0.852,
+          "earned": true
+        },
+        {
+          "lang": "ja",
+          "term": "気配り",
+          "gloss": "kikubari — attentive care",
+          "adds": "anticipatory attention that arranges for others' unspoken needs before they arise — proactive, not merely responsive tact",
+          "resolutionScore": 1.0,
+          "earned": true
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "measured",
+      "quality": "Measured",
+      "definition": "Keeps a sense of the right scale and proportion in responses.",
+      "indicators": [
+        "responses fit the stakes",
+        "avoids over- and under-reaction",
+        "calibrates effort"
+      ],
+      "quadrant": {
+        "coreQuality": "Sense of proportion",
+        "pitfall": "Timidity",
+        "challenge": "Boldness",
+        "allergy": "Recklessness"
+      },
+      "precisionAnchors": [
+        {
+          "lang": "de",
+          "term": "Augenmaß",
+          "gloss": "sense of measure, by eye",
+          "adds": "an intuitive gauge of the correct magnitude judged by eye without instruments — knowing how much is enough in the specific case",
+          "resolutionScore": 0.909,
+          "earned": true
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "grounded",
+      "quality": "Grounded",
+      "definition": "Stays connected to the concrete and practical, not swept up in abstraction.",
+      "indicators": [
+        "asks what it means in practice",
+        "stays close to reality",
+        "resists hype"
+      ],
+      "quadrant": {
+        "coreQuality": "Groundedness",
+        "pitfall": "Provincialism",
+        "challenge": "Openness",
+        "allergy": "Rootlessness"
+      },
+      "precisionAnchors": [
+        {
+          "lang": "de",
+          "term": "Bodenständigkeit",
+          "gloss": "down-to-earthness",
+          "adds": "rootedness in one's origins and the tangible — an unpretentious loyalty to the concrete that resists status inflation",
+          "resolutionScore": 0.889,
+          "earned": true
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "principled",
+      "quality": "Principled",
+      "definition": "Holds to a consistent set of values across situations.",
+      "indicators": [
+        "consistent under pressure",
+        "names the line",
+        "acts against self-interest for a value"
+      ],
+      "quadrant": {
+        "coreQuality": "Integrity of stance",
+        "pitfall": "Rigidity",
+        "challenge": "Adaptiveness",
+        "allergy": "Opportunism"
+      },
+      "precisionAnchors": [
+        {
+          "lang": "de",
+          "term": "Haltung",
+          "gloss": "posture, bearing, stance",
+          "adds": "an inner moral posture that is visibly held under pressure — bearing as an ethical commitment enacted in how one carries oneself, not a stated belief",
+          "resolutionScore": 0.867,
+          "earned": true
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "persevering",
+      "quality": "Persevering",
+      "definition": "Sustains effort through difficulty and tedium toward a goal.",
+      "indicators": [
+        "stays with hard tasks",
+        "returns after setbacks",
+        "tolerates boredom"
+      ],
+      "quadrant": {
+        "coreQuality": "Perseverance",
+        "pitfall": "Stubbornness",
+        "challenge": "Letting go",
+        "allergy": "Flakiness"
+      },
+      "precisionAnchors": [
+        {
+          "lang": "de",
+          "term": "Sitzfleisch",
+          "gloss": "sitting flesh",
+          "adds": "the specific capacity to stay seated at grinding work through tedium — endurance of dull sustained effort rather than dramatic hardship",
+          "resolutionScore": 0.692,
+          "earned": true
+        },
+        {
+          "lang": "ja",
+          "term": "我慢",
+          "gloss": "gaman — patient endurance",
+          "adds": "enduring the seemingly unbearable with dignity and without complaint — perseverance as a social-moral virtue of composure under suffering",
+          "resolutionScore": 1.0,
+          "earned": true
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "discerning",
+      "quality": "Discerning",
+      "definition": "Judges particular cases well, distinguishing what matters from what does not.",
+      "indicators": [
+        "separates signal from noise",
+        "weighs specifics",
+        "avoids false equivalence"
+      ],
+      "quadrant": {
+        "coreQuality": "Discernment",
+        "pitfall": "Overthinking",
+        "challenge": "Decisiveness",
+        "allergy": "Impulsiveness"
+      },
+      "precisionAnchors": [
+        {
+          "lang": "de",
+          "term": "Urteilskraft",
+          "gloss": "power of judgement",
+          "adds": "the faculty of judging particulars rightly where no rule dictates the answer — Kant's reflective judgement, applied case by case",
+          "resolutionScore": 0.764,
+          "earned": true
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "courageous",
+      "quality": "Courageous",
+      "definition": "Acts rightly in the face of fear or risk.",
+      "indicators": [
+        "speaks up despite cost",
+        "faces the hard thing",
+        "risks standing"
+      ],
+      "quadrant": {
+        "coreQuality": "Courage",
+        "pitfall": "Recklessness",
+        "challenge": "Prudence",
+        "allergy": "Cowardice"
+      },
+      "precisionAnchors": [
+        {
+          "lang": "de",
+          "term": "Zivilcourage",
+          "gloss": "civil courage",
+          "adds": "the specific courage to stand up publicly for what is right against social pressure — a civic dimension distinct from physical bravery",
+          "resolutionScore": 0.84,
+          "earned": true
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "attuned",
+      "quality": "Attuned",
+      "definition": "Senses others' states and adjusts to them.",
+      "indicators": [
+        "picks up mood shifts",
+        "adjusts approach",
+        "names what is unsaid"
+      ],
+      "quadrant": {
+        "coreQuality": "Attunement",
+        "pitfall": "Over-accommodation",
+        "challenge": "Boundaries",
+        "allergy": "Coldness"
+      }
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "deep",
+      "quality": "Deep",
+      "definition": "Goes beneath the surface to the substance of a thing.",
+      "indicators": [
+        "asks the underlying question",
+        "resists shallow answers",
+        "sits with complexity"
+      ],
+      "quadrant": {
+        "coreQuality": "Depth",
+        "pitfall": "Ponderousness",
+        "challenge": "Lightness",
+        "allergy": "Superficiality"
+      },
+      "precisionAnchors": [
+        {
+          "lang": "de",
+          "term": "Tiefgang",
+          "gloss": "draught, depth (of a ship)",
+          "adds": "substantive depth beneath the visible surface, carried as a stable property of a person or work — how much lies below the waterline",
+          "resolutionScore": 0.764,
+          "earned": true
+        }
+      ]
+    },
+    {
+      "schemaVersion": "0.1.0",
+      "id": "flexible",
+      "quality": "Flexible",
+      "definition": "Adjusts readily to changing circumstances.",
+      "indicators": [
+        "changes plan on new information",
+        "improvises",
+        "holds views loosely"
+      ],
+      "quadrant": {
+        "coreQuality": "Flexibility",
+        "pitfall": "Wishy-washiness",
+        "challenge": "Steadiness",
+        "allergy": "Rigidity"
+      },
+      "precisionAnchors": [
+        {
+          "lang": "de",
+          "term": "flexibel",
+          "gloss": "flexible",
+          "adds": "flexible and adaptable",
+          "resolutionScore": 0.083,
+          "earned": false
+        }
+      ]
+    }
+  ]
+}
