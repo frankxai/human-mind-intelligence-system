@@ -1,5 +1,5 @@
 {
-  "note": "Labelled scenarios for tools/hma_eval.py. Each records a subject's core quality, the candidate irritants they were exposed to, and which one they were observed to react most strongly against. Labels are intentionally noisy — two subjects react against something other than the quadrant allergy — so the eval reports honest signal, not a rigged 100%.",
+  "note": "Labelled scenarios for tools/hma_eval.py. Each records a subject's core quality, the candidate irritants they were exposed to, and which one they were observed to react most strongly against. These are hand-written seed fixtures, not observations of real people. Labels are intentionally noisy — two subjects react against something other than the quadrant allergy — so the harness shows a non-perfect score. The score is not evidence about people.",
   "scenarios": [
     { "id": "s1", "subjectCoreQuality": "decisive", "candidateIrritants": ["passivity", "pushiness", "sloppiness"], "observedStrongestIrritation": "passivity" },
     { "id": "s2", "subjectCoreQuality": "conscientious", "candidateIrritants": ["sloppiness", "rigidity", "coldness"], "observedStrongestIrritation": "sloppiness" },

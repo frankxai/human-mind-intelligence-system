@@ -37,7 +37,9 @@ Decisions recorded so they are not re-litigated:
   earned, 2 decoys cut.
 - **The quadrant is a hypothesis generator, not a personality type.** Routed
   through the response-prediction discipline. `tools/hma_eval.py` tests the allergy
-  edge against labelled scenarios (seed: 0.78 accuracy, 2.33× over baseline).
+  edge against labelled scenarios (seed: 0.78 accuracy, 2.33× over baseline; the
+  nine seed scenarios are hand-written fixtures, so this shows the harness works,
+  not that the quadrant predicts people).
 - **The non-clinical guardrail is executable.** `tools/hma_loader.py` enforces the
   confidence caps and a clinical-vocabulary denylist in code, not just prose.
 - **A quality is not a thirteenth cognitive construct.** It is dispositional and

@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Falsifiable eval for the quadrant primitive.
 
-The Ofman quadrant makes a checkable prediction: a person operating from a core
-quality tends to be most irritated by that quality's *allergy* (the balancing
-challenge overextended in someone else). This harness tests that prediction
-against labelled scenarios and reports whether it beats a random baseline.
+The Ofman quadrant, as coaching practice describes it, predicts that a person
+operating from a core quality tends to be most irritated by that quality's
+*allergy* (the balancing challenge overextended in someone else). This harness
+tests that prediction against labelled scenarios and reports whether it beats a
+random baseline. The seed scenarios are hand-written fixtures, not observations
+of real people, so a pass shows the harness runs, not that the prediction holds.
 
   model prediction = lexicon[subject core quality].quadrant.allergy
   baseline         = random guess among the candidate irritants

@@ -17,9 +17,10 @@ The Atlas's structural primitive is Daniel Ofman's core-quality quadrant
 - **Allergy** — the challenge overextended, usually in *someone else*; what the
   person finds hardest to tolerate (passivity).
 
-The diagonal is the tell: a person tends to be most irritated by their **allergy**,
-which is the far corner from their core quality. Decisive people bristle at
-passivity; tactful people bristle at bluntness.
+In Ofman's model, the diagonal is the tell: a person tends to be most irritated by
+their **allergy**, the far corner from their core quality. Decisive people bristle
+at passivity; tactful people bristle at bluntness. The quadrant comes from
+coaching practice, and this repo cites no empirical validation for it.
 
 ## How the Atlas uses it
 
