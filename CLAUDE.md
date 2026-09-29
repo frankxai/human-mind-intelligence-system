@@ -37,7 +37,10 @@ Every claim about a person passes through five labelled stages. Never collapse t
 4. **Evidence** — what backs each step, with confidence and provenance.
 5. **Decide** — human-owned. You inform it; you do not make it.
 
-Two structural rules fall out of this and are enforced by the schemas:
+Two structural rules fall out of this. The schemas keep `interpretation` a separate,
+optional object, but JSON Schema cannot compare two fields, so the confidence cap is
+checked in code only for Atlas documents (`tools/hma_loader.py`). Producers of the
+twelve construct documents must apply it themselves:
 
 - An `observation` never carries an `interpretation` inline.
 - Confidence in an interpretation is never higher than confidence in the

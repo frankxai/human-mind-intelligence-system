@@ -67,4 +67,6 @@ hypothesis turns into a (non-clinical) predicted response.
 
 Note that observation confidence (`0.9`) sits well above interpretation confidence
 (`0.45`), and the interpretation carries an explicit alternative. That gap is the
-discipline the schema exists to enforce.
+discipline the schema is shaped around. The schemas cannot enforce the cap
+themselves; producers apply it, and `tools/hma_loader.py` checks it for Atlas
+documents.
