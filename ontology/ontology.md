@@ -41,7 +41,7 @@ Edges are typed. The four relationship types:
 | From | Type | To | Why (grounded in canon Related Constructs) |
 |---|---|---|---|
 | `attention` | gates | `memory` | Only attended content is reliably encoded. |
-| `attention` | gates | `consciousness` | Access consciousness tracks what attention selects. |
+| `attention` | gates | `consciousness` | Access consciousness is often modelled as tracking what attention selects. |
 | `memory` | feeds | `learning` | Learning is durable change built on encoding and retrieval. |
 | `memory` | feeds | `identity` | Autobiographical memory composes narrative identity. |
 | `memory` | feeds | `belief` | Stored evidence and episodes back belief formation. |
@@ -50,7 +50,7 @@ Edges are typed. The four relationship types:
 | `emotion` | modulates | `motivation` | Approach/avoidance affect biases what is pursued. |
 | `emotion` | modulates | `attention` | Affect drives attentional bias toward salient cues. |
 | `emotion` | modulates | `memory` | Arousal at encoding alters later retrieval strength. |
-| `emotion` | modulates | `decision-making` | Somatic markers weight options under uncertainty. |
+| `emotion` | modulates | `decision-making` | On the somatic-marker account, affective signals weight options under uncertainty. |
 | `motivation` | feeds | `behavior` | Goals initiate and direct action. |
 | `motivation` | feeds | `decision-making` | Value and expectancy enter option evaluation. |
 | `belief` | modulates | `decision-making` | Held priors shape how options are weighed. |

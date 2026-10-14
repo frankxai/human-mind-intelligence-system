@@ -62,7 +62,7 @@ it earns its keep.
 ## The quadrant primitive
 
 The relation between qualities is the [Ofman core-quality
-quadrant](quadrant.md): a quality overextended becomes a **pitfall**; the pitfall's
+quadrant](../models/human-atlas/quadrant.md): a quality overextended becomes a **pitfall**; the pitfall's
 positive opposite is the **challenge**; the challenge overextended in someone else
 is the **allergy** — what the person tends to find hardest to tolerate.
 
@@ -71,13 +71,16 @@ Given an observed quality it predicts a likely pitfall, challenge, and allergy �
 each conditional, probabilistic, and falsifiable, routed through the same
 [response-prediction](response-prediction.md) discipline as everything else.
 
-That prediction is checkable, so it is checked.
+That prediction is checkable, so the harness checks it.
 [`tools/hma_eval.py`](../tools/hma_eval.py) tests one edge — "a person is most
 irritated by their allergy" — against labelled scenarios and reports accuracy
-against a random baseline. On the seed scenarios the quadrant scores 0.78 (7/9),
-a 2.33× lift over chance, with two honest misses. A quality model that cannot beat
-chance on its own eval is signalling that it is decorative for that data. That is
-what the eval is for.
+against a random baseline. The nine seed scenarios in
+`tests/fixtures/eval-scenarios.json` are hand-written fixtures with deliberately
+noisy labels; no study or observed data is cited for them. Their score (0.78, 7/9,
+a 2.33× lift over chance) shows that the harness runs and can report a miss. It is
+not evidence that the quadrant predicts irritation in people. A quality model that
+cannot beat chance on real labelled data would be signalling that it is decorative;
+replacing the fixtures with real data is what would make that test meaningful.
 
 ## What makes this a system, not a lexicon
 

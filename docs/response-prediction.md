@@ -59,7 +59,7 @@ Not a JSON Schema in this version — a documented convention for agent output:
       "evidence": [
         "high-arousal indicator on the emotion observation",
         "risk-handling indicator on the decision observation",
-        "prospect-theory lens: losses loom larger under arousal"
+        "prospect-theory lens: losses loom larger than equivalent gains"
       ],
       "horizon": "next-decision",
       "falsifier": "Person chooses the larger uncertain option."
@@ -111,9 +111,9 @@ These are non-negotiable. They mirror the prime directive in
 **Prediction**
 
 > Likely to continue re-reading rather than switch to self-testing (confidence 0.5),
-> because the metacognition observation shows a fluency illusion (predicted
-> understanding exceeding demonstrated understanding) and the attention observation
-> shows passive re-exposure. Alternative (confidence 0.3): likely to abandon the
+> because the metacognition observation is consistent with a fluency illusion
+> (predicted understanding exceeding demonstrated understanding) and the attention
+> observation is consistent with passive re-exposure. Alternative (confidence 0.3): likely to abandon the
 > material entirely. Falsifier: person switches to active recall unprompted.
 
 **Decision** — left to the human: e.g., a study-support agent might *offer* a recall
